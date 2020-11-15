@@ -1,6 +1,8 @@
 package nk.gk.wyl.doc.util.file;
 
 import nk.gk.wyl.doc.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -21,10 +23,6 @@ public class UploadFile {
         // 判断文件夹
         if(!file_.exists()){
             file_.mkdirs();
-        }
-        long size = file.getSize();
-        if(size==0){
-            throw new Exception("上传的文件为空");
         }
         try {
             file.transferTo(new File(file_path+"word/"+id));

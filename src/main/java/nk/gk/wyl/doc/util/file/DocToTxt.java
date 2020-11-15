@@ -11,6 +11,7 @@ public class DocToTxt {
     private static Logger logger = LoggerFactory.getLogger(DocToTxt.class);
     private static String DOC = "doc";
     private static String DOCX = "docx";
+    private static String TXT = "txt";
 
     public static void main(String[] args) {
         /*String path = "F:\\opt\\KB-REST接口规范-v2.2.docx";
@@ -51,11 +52,15 @@ public class DocToTxt {
      * @return
      */
     public static String wordToTxt(FileInputStream fileInputStream,String suffix) throws Exception {
+        suffix = suffix.toLowerCase();
         String  content = "";
         if(suffix.equals(DOC)){
             content = docToTxt(fileInputStream);
         }else if(suffix.equals(DOCX)){
             content = docxToTxt(fileInputStream);
+        }else if(suffix.equals(TXT)){
+            content = TxtUtil.readTxt(fileInputStream);
+            System.out.println(content);
         }
         return content;
     }

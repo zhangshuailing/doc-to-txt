@@ -18,6 +18,7 @@ public class CommonValidator {
 
     private static String DOC = "doc";
     private static String DOCX = "docx";
+    private static String TXT = "txt";
 
     /**
      * 校验doc docx
@@ -26,13 +27,18 @@ public class CommonValidator {
      */
     public static String checkFile(MultipartFile file) throws Exception {
         String name = file.getOriginalFilename();
+
         if(name.lastIndexOf(".")==-1){
-            throw new Exception("文件后缀必须是doc 或者 docx");
+            throw new Exception("上传文件格式必须是 "+DOC+"、"+DOCX+"、"+TXT);
         }
         String suffix = name.substring(name.lastIndexOf(".")+1,name.length());
         // 判断文件后缀 doc docx
-        if(!DOC.equals(suffix.toLowerCase())&&!DOCX.equals(suffix.toLowerCase())){
-            throw new Exception("文件后缀必须是doc 或者 docx");
+        if(!DOC.equals(suffix.toLowerCase())&&!DOCX.equals(suffix.toLowerCase())&&!TXT.equals(suffix.toLowerCase())){
+            throw new Exception("上传文件格式必须是 "+DOC+"、"+DOCX+"、"+TXT);
+        }
+        long size = file.getSize();
+        if(size==0){
+            throw new Exception("上传的文件为空");
         }
         return suffix.toLowerCase();
     }
