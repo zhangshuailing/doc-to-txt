@@ -1,0 +1,26 @@
+server:
+  port: 8081
+
+# 是否开启 swagger
+swagger:
+  enable: true
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+
+
+# 生成的txt文档
+file_path:
+  /zw/
+# 轮训文件路径时间间隔秒（s）
+dir_time:
+  10
+# 是否开启监听
+is_open_monitor:
+  true
+# 分钟
+is_store_time:
+  30
