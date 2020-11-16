@@ -43,5 +43,5 @@ public interface DocToTxtService {
      * @return 返回文本
      * @throws Exception 异常信息
      */
-    String getTxtByDocOrDocxInputStream(FileInputStream fileInputStream, String suffix) throws Exception;
+    String getTxtByDocOrDocxInputStream(InputStream fileInputStream, String suffix) throws Exception;
 }

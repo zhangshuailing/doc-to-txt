@@ -35,7 +35,7 @@ public class DocToTxt {
      * @param suffix 文件前缀
      * @param path 路径
      */
-    public static String wordToTxtFile(FileInputStream fileInputStream,String suffix,String path) throws Exception {
+    public static String wordToTxtFile(InputStream fileInputStream,String suffix,String path) throws Exception {
         String content = wordToTxt(fileInputStream,suffix);
         try {
             Output.write(content,path);
@@ -51,7 +51,7 @@ public class DocToTxt {
      * @param suffix 文件后缀
      * @return
      */
-    public static String wordToTxt(FileInputStream fileInputStream,String suffix) throws Exception {
+    public static String wordToTxt(InputStream fileInputStream,String suffix) throws Exception {
         suffix = suffix.toLowerCase();
         String  content = "";
         if(suffix.equals(DOC)){
@@ -60,7 +60,6 @@ public class DocToTxt {
             content = docxToTxt(fileInputStream);
         }else if(suffix.equals(TXT)){
             content = TxtUtil.readTxt(fileInputStream);
-            System.out.println(content);
         }
         return content;
     }
@@ -71,7 +70,7 @@ public class DocToTxt {
      * @param fileInputStream 文件流
      * @return 字符串
      */
-    public static String docToTxt(FileInputStream fileInputStream) throws Exception {
+    public static String docToTxt(InputStream fileInputStream) throws Exception {
         // 文本内容
         String content = null;
         // doc
@@ -94,7 +93,7 @@ public class DocToTxt {
      * @param fileInputStream 文件流
      * @return 字符串
      */
-    public static String docxToTxt(FileInputStream fileInputStream) throws Exception {
+    public static String docxToTxt(InputStream fileInputStream) throws Exception {
         // 文本内容
         String content = null;
         // docx

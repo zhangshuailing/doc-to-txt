@@ -40,11 +40,11 @@ public class DocToTxtServiceImpl implements DocToTxtService {
     public TxtModel upload(MultipartFile file) throws Exception {
         // 文件后缀
         String suffix = CommonValidator.checkFile(file);
-        String upload_file_path = UploadFile.uploadFile(file,file_path,suffix);
+       /* String upload_file_path = UploadFile.uploadFile(file,file_path,suffix);
         File file1 = new File(file_path+upload_file_path);
-        FileInputStream inputStream = new FileInputStream(file1);
+        FileInputStream inputStream = new FileInputStream(file1);*/
         String id = Util.getResourceId()+".txt";
-        String content = DocToTxt.wordToTxtFile(inputStream,suffix,file_path+"txt/"+id);
+        String content = DocToTxt.wordToTxtFile(file.getInputStream(),suffix,file_path+"txt/"+id);
         // 返回值
         TxtModel txtModel = new TxtModel();
         txtModel.setContent(content);
@@ -62,10 +62,10 @@ public class DocToTxtServiceImpl implements DocToTxtService {
     public String uploadTxt(MultipartFile file) throws Exception {
         // 文件后缀
         String suffix = CommonValidator.checkFile(file);
-        String upload_file_path = UploadFile.uploadFile(file,file_path,suffix);
+       /* String upload_file_path = UploadFile.uploadFile(file,file_path,suffix);
         File file1 = new File(file_path+upload_file_path);
-        FileInputStream inputStream = new FileInputStream(file1);
-        String text = getTxtByDocOrDocxInputStream(inputStream,suffix);
+        FileInputStream inputStream = new FileInputStream(file1);*/
+        String text = getTxtByDocOrDocxInputStream(file.getInputStream(),suffix);
         return text;
     }
 
@@ -97,7 +97,7 @@ public class DocToTxtServiceImpl implements DocToTxtService {
      * @throws Exception 异常信息
      */
     @Override
-    public String getTxtByDocOrDocxInputStream(FileInputStream fileInputStream,String suffix) throws Exception {
+    public String getTxtByDocOrDocxInputStream(InputStream fileInputStream,String suffix) throws Exception {
         return  DocToTxt.wordToTxt(fileInputStream,suffix);
     }
 

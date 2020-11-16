@@ -43,7 +43,7 @@ public class TxtUtil {
      * @param fileInputStream txt文件流
      * @return
      */
-    public static String readTxt(FileInputStream fileInputStream){
+    public static String readTxt(InputStream fileInputStream){
         StringBuffer strbuffer = new StringBuffer();
         String encoding = "GBK"; // 字符编码(可解决中文乱码问题 )
         try {
